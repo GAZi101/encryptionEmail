@@ -90,12 +90,13 @@ public byte[] enkripFile(File file,String password,javax.swing.JProgressBar pers
         String extension = "";
         //fileString="";
 //Base64.encode(byteFile);
+        fileString = Base64.encode(byteFile);
+        String EnkripFile = des.enkrip(fileString, password, persenProgessbar);
+        //byte[] EnkripFile = rc6.encrypt(byteFile, password.getBytes());
         
-        byte[] EnkripFile = rc6.encrypt(byteFile, password.getBytes());
+        String enkrip =EnkripFile+"namaFile :"+file.getName()+"Key : "+password;
         
-        //String enkrip =EnkripFile+"namaFile :"+file.getName()+"Key : "+password;
-        
-        String encodeString =Base64.encode(new String(EnkripFile).getBytes());//+status;
+        String encodeString =Base64.encode(new String(enkrip).getBytes());//+status;
         encodeString+="jeda : "+status;
         enkripFile =encodeString.getBytes();
 //return  enkripFile;   
@@ -117,17 +118,24 @@ try{
     inputStream.close();                   
 }catch(Exception exc){}
     String fileString =new String(byteFile);
-    String status =enkripText("cintyaCintyaDewi","cintyaDewi");
+    String status =enkripText("Sudah","Di isi");
     if(!fileString.contains(status)){
          pesanKesalahan="File Belum Terenkripsi";
          return null;
     }
-    fileString=fileString.replaceAll("jeda : "+status,"");
+    /*fileString=fileString.replaceAll("jeda : "+status,"");
     byte [] decodeByte=Base64.decode(fileString);
     char[] fileByte =new String(decodeByte).toCharArray();
     rc4.keyString(password);
     char fileChar[]= rc4.decrypt(fileByte,persenProgessbar);
     fileString = new String(fileChar);
+    String pass =fileString.substring(fileString.lastIndexOf("Key : ") + 6);
+    System.out.print(pass);*/
+    fileString=fileString.replaceAll("jeda : "+status,"");
+    byte [] decodeByte=Base64.decode(fileString);
+    char[] fileByte =new String(decodeByte).toCharArray();
+    
+    fileString = new String(fileByte);
     String pass =fileString.substring(fileString.lastIndexOf("Key : ") + 6);
     System.out.print(pass);
     if(!pass.equals(password)){
@@ -140,6 +148,7 @@ try{
     String DeskripFile = des.deskrip(fileString, password,persenProgessbar);
     byte[] DeskripBytes =  Base64.decode(DeskripFile);
     enkripFile =DeskripBytes;
+    
     return enkripFile;
 }
 byte [] STB2(String s){
