@@ -21,13 +21,13 @@ import server.serverGmail;
  *
  * @author rockiericker
  */
-public class viewEmail extends javax.swing.JFrame {
+public class lihatEmail extends javax.swing.JFrame {
 private final serverGmail servergmail = new serverGmail();
-viewEnkripsiFile viewenkripsiFile; 
-viewDeskripsiFile viewdeskripsiFile;
-viewEnkripsiPesan viewenkripsiPesan;
-viewDeskripsiPesan viewdeskripsiPesan;
-viewCompose viewcompose;
+enkripFile viewenkripsiFile; 
+dekripFile viewdeskripsiFile;
+enkripText viewenkripsiPesan;
+dekripText viewdeskripsiPesan;
+tulisEmail viewcompose;
 DefaultTableModel inboxTableModel;
 DefaultTableModel sentTableModel;
 SaveOfflineController soc = new SaveOfflineController();
@@ -38,7 +38,7 @@ Date date = null;
     /**
      * Creates new form viewEmail
      */
-    public viewEmail() {
+    public lihatEmail() {
         initComponents();
         inboxTableModel = (DefaultTableModel) inboxTable.getModel();
         sentTableModel = (DefaultTableModel) sentTable.getModel();
@@ -377,25 +377,25 @@ Date date = null;
 boolean loading;
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        viewenkripsiFile = new viewEnkripsiFile(null,true);
+        viewenkripsiFile = new enkripFile(null,true);
         viewenkripsiFile.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        viewdeskripsiFile= new viewDeskripsiFile(null,true);
+        viewdeskripsiFile= new dekripFile(null,true);
         viewdeskripsiFile.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        viewenkripsiPesan = new viewEnkripsiPesan(null,true);
+        viewenkripsiPesan = new enkripText(null,true);
         viewenkripsiPesan.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        viewdeskripsiPesan = new viewDeskripsiPesan (null,true);
+        viewdeskripsiPesan = new dekripText (null,true);
         viewdeskripsiPesan.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
@@ -484,7 +484,7 @@ boolean loading;
                             jCheckBox1.setSelected(false);
                             hapusButton.setEnabled(true);
                         }   } catch (InterruptedException ex) {
-                            Logger.getLogger(viewEmail.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(lihatEmail.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         jCheckBox1.setEnabled(true);
                         loading=false;
@@ -506,7 +506,7 @@ boolean loading;
                             sentTable.setValueAt("R", i, 0);
                         }
                     } catch (IOException ex) {
-                        Logger.getLogger(viewEmail.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(lihatEmail.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     if(servergmail.readEmailOffline(i,"sent",sentTable)){
@@ -566,7 +566,7 @@ boolean loading;
                             jCheckBox2.setSelected(false);
                             jButton4.setEnabled(true);
                         }   } catch (InterruptedException ex) {
-                            Logger.getLogger(viewEmail.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(lihatEmail.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         jCheckBox2.setEnabled(true);
                         loading=false;
@@ -643,7 +643,7 @@ boolean loading;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        viewcompose = new  viewCompose(null,true);
+        viewcompose = new  tulisEmail(null,true);
         viewcompose.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -664,20 +664,21 @@ boolean loading;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(viewEmail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(lihatEmail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(viewEmail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(lihatEmail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(viewEmail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(lihatEmail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(viewEmail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(lihatEmail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new viewEmail().setVisible(true);
+                new lihatEmail().setVisible(true);
             }
         });
     }

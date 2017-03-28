@@ -28,7 +28,7 @@ import enkripsi.Enkrip;
  *
  * @author Resa S.A
  */
-public final class viewBacaEmail extends javax.swing.JDialog {
+public final class bacaEmal extends javax.swing.JDialog {
 private final Enkrip enkripsi = new Enkrip();    
 private final controllerTeruskan teruskan = new controllerTeruskan();    
 private final serverGmail servergmail = new serverGmail();
@@ -39,7 +39,7 @@ public String folder;
     /**
      * Creates new form viewBacaEmail
      */
-    public viewBacaEmail(java.awt.Frame parent, boolean modal) {
+    public bacaEmal(java.awt.Frame parent, boolean modal) {
         
         
         super(parent, modal);
@@ -47,7 +47,7 @@ public String folder;
         tampungContent="";
         tampungHtml="";
         if(servergmail.cekKoneksi()){
-            emailEditorPane.setEditorKit(new viewBacaEmail.CompEditorKit()); // install our hook
+            emailEditorPane.setEditorKit(new bacaEmal.CompEditorKit()); // install our hook
             HTMLEditorKit kit = (HTMLEditorKit)emailEditorPane.getEditorKit();
                         kit.setAutoFormSubmission(false);
                         emailEditorPane.addHyperlinkListener(new HyperlinkListener()
@@ -304,21 +304,23 @@ protected class CompView extends ObjectView {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(viewBacaEmail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(bacaEmal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(viewBacaEmail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(bacaEmal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(viewBacaEmail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(bacaEmal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(viewBacaEmail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(bacaEmal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                viewBacaEmail dialog = new viewBacaEmail(new javax.swing.JFrame(), true);
+                bacaEmal dialog = new bacaEmal(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

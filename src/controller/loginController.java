@@ -18,7 +18,7 @@ import enkripsi.Enkrip;
 import java.awt.Cursor;
 import javax.swing.JOptionPane;
 import server.serverGmail;
-import view.viewEmail;
+import view.lihatEmail;
 
 /**
  *
@@ -58,7 +58,7 @@ if(!alamatEmailTextField.getText().toLowerCase().contains("gmail.com")||alamatEm
     return;
 }
 if(!servergmail.cekKoneksi()){
-    viewEmail viewemail = new viewEmail();
+    lihatEmail viewemail = new lihatEmail();
     viewemail.setCursor(new Cursor(Cursor.WAIT_CURSOR));
     if(soc.bacaUser(alamatEmailTextField.getText().toLowerCase())){  
         if(soc.password.equals(passwordField.getText())){
@@ -101,8 +101,8 @@ if(!servergmail.cekKoneksi()){
                 propsSMTP.setProperty("mail.smtp.starttls.enable", "true");
                 propsSMTP.setProperty("mail.smtp.auth", "true");
             }
-                propsAkun.setProperty("mail.user",enkrip.enkripText(alamatEmailTextField.getText(),"budiluhur"));
-                propsAkun.setProperty("mail.password",enkrip.enkripText(passwordField.getText(),"budiluhur"));
+                propsAkun.setProperty("mail.user",alamatEmailTextField.getText());
+                propsAkun.setProperty("mail.password",passwordField.getText());
                 loadingAnimasi=false;
                 String direktori= System.getProperty("user.dir");
                 File setingImap = new File(direktori+"/src/seting/imapProperties.properties");
@@ -118,7 +118,7 @@ if(!servergmail.cekKoneksi()){
                     outputStream = new FileOutputStream(setingAkun);
                     propsAkun.store(outputStream, "akun setings");
                     JOptionPane.showMessageDialog(null, "BERHASIL", "Informasi",JOptionPane.INFORMATION_MESSAGE);
-                    viewEmail viewemail= new viewEmail();
+                    lihatEmail viewemail= new lihatEmail();
                     frame.dispose();  
                     viewemail.setVisible(true);
                     outputStream.close();
@@ -199,8 +199,8 @@ String host=alamatEmailTextField.getText().toLowerCase();
             propsSMTP.setProperty("mail.smtp.auth", "true");
         }
 
-        propsAkun.setProperty("mail.user",enkrip.enkripText(alamatEmailTextField.getText(),"budiluhur"));//enkrip.enkripText(alamatEmailTextField.getText(),"budiluhur"));
-        propsAkun.setProperty("mail.password",enkrip.enkripText(passwordField.getText(),"budiluhur"));//enkrip.enkripText(passwordField.getText(),"budiluhur"));
+        propsAkun.setProperty("mail.user",alamatEmailTextField.getText());//enkrip.enkripText(alamatEmailTextField.getText(),"budiluhur"));
+        propsAkun.setProperty("mail.password",passwordField.getText());//enkrip.enkripText(passwordField.getText(),"budiluhur"));
         Session session = Session.getDefaultInstance(propsImap);  
         Store store = session.getStore("imap");
         store.connect(alamatEmailTextField.getText().toLowerCase(), passwordField.getText());
@@ -218,7 +218,7 @@ String host=alamatEmailTextField.getText().toLowerCase();
         outputStream.close();
         outputStream = new FileOutputStream(setingAkun);
         propsAkun.store(outputStream, "akun setings");   
-        viewEmail viewemail = new viewEmail();
+        lihatEmail viewemail = new lihatEmail();
         soc.userID = alamatEmailTextField.getText().toLowerCase();
         soc.password = passwordField.getText();
         if(soc.simpanUser()){               
@@ -243,7 +243,7 @@ String host=alamatEmailTextField.getText().toLowerCase();
 
       
 }
-};treet.start();
+            };treet.start();
 }
 }
 }

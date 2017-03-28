@@ -5,28 +5,40 @@
  */
 package view;
 
-import java.awt.Color;
+
+import algo.RC6;
 import java.io.File;
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
-import enkripsi.Enkrip;
+import java.awt.Color;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import javax.swing.JFrame;
+import javax.swing.JProgressBar;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import server.serverGmail;
 /**
  *
  * @author rockiericker
  */
-public class viewEnkripsiFile extends javax.swing.JDialog {
-private final Enkrip enkripsi = new Enkrip();
+public class enkripFile extends javax.swing.JDialog {
+private final RC6 rc6 = new RC6();
+//private final Enkrip enkripsi = new Enkrip();
 private JFileChooser jfc;
 private static File file;
     /**
      * Creates new form viewEnkripsiPesan
      */
-    public viewEnkripsiFile(java.awt.Frame parent, boolean modal) {
+    public enkripFile(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         aturFrame(0.85,true);
@@ -203,79 +215,125 @@ private static File file;
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-            jfc=new JFileChooser();
-           // FileFilter filter1 = new ExtensionFileFilter("Doukumen", new String[] {"DOC", "DOCX","PDF","TXT"});
-          //  jfc.setFileFilter(filter1);
-            jfc.setAcceptAllFileFilterUsed(false);
-            if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(fileLabel)){ 
-            fileLabel.setText(jfc.getSelectedFile().getPath());
-            file=new File(jfc.getSelectedFile().getPath());
-              }
+         String current = "";
+		JFileChooser jfc = null; 
+		LookAndFeel previousLF = UIManager.getLookAndFeel();
+		try{
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			jfc = new JFileChooser(current);
+			jfc.setDialogTitle("Pilih File");
+			UIManager.setLookAndFeel(previousLF);
+		}catch (IllegalAccessException | UnsupportedLookAndFeelException | InstantiationException | ClassNotFoundException e) {}
+		FileFilter docFilter, docxFilter, xlsFilter, xlsxFilter, txtFilter,pdfFilter, allFilter;
+		docFilter = new FileNameExtensionFilter("Word 2007/2010", "docx");
+		docxFilter = new FileNameExtensionFilter("Word 2003", "doc");
+		xlsFilter = new FileNameExtensionFilter("Excel 2003", "xls");
+		xlsxFilter = new FileNameExtensionFilter("Excel 2007/2010", "xlsx");
+		txtFilter = new FileNameExtensionFilter("Text Document File","txt");
+		pdfFilter = new FileNameExtensionFilter("PDF Document File", "pdf");
+		allFilter = new FileNameExtensionFilter("All File", "doc", "docx", "xls", "xlsx", "txt");
+		jfc.setAcceptAllFileFilterUsed(false);
+		jfc.addChoosableFileFilter(docxFilter);
+                jfc.addChoosableFileFilter(docFilter);
+		jfc.addChoosableFileFilter(xlsFilter);
+		jfc.addChoosableFileFilter(xlsxFilter);
+		jfc.addChoosableFileFilter(txtFilter);
+		jfc.addChoosableFileFilter(pdfFilter);
+		jfc.addChoosableFileFilter(allFilter);
+		if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+			String f = jfc.getSelectedFile().toString();
+			fileLabel.setText(f);
+		}
+		else {
+			jfc.hide();
+		}
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void enkripButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enkripButtonActionPerformed
         // TODO add your handling code here:
-        if(passwordField.getText().length()<8){
-        JOptionPane.showMessageDialog(null,"Password Harus 8 Karakter Atau Lebih","Informasi",JOptionPane.INFORMATION_MESSAGE);
-        return;
+        try {
+            
+			if (fileLabel.getText().equals("")){
+				JOptionPane.showMessageDialog(this,"File Belum Di Pilih");
+				fileLabel.requestFocus();
+			}
+			else if (passwordField.getText().equals("")){
+				JOptionPane.showMessageDialog(this,"Password Belum Di Masukan");
+				passwordField.requestFocus();
+			}
+                        else if(!miripLabel.getText().equals("Valid")){
+                        JOptionPane.showMessageDialog(null,"Pasword Tidak Valid","Informasi",JOptionPane.INFORMATION_MESSAGE);
+                        
         }
-        if(!miripLabel.getText().equals("Valid")){
-        JOptionPane.showMessageDialog(null,"Pasword Tidak Valid","Informasi",JOptionPane.INFORMATION_MESSAGE);
-        return;
-        }
-        if(file==null){
-        JOptionPane.showMessageDialog(null,"Belum Memilih File","Informasi",JOptionPane.INFORMATION_MESSAGE);
-        return;
-        }
-    
-        Thread treet = new Thread(){
-        @Override
-        public void run(){    
-        byte [] outputByte = null;
-        outputByte = enkripsi.enkripFile(file, passwordField.getText(),persenProgessbar);
-        if(outputByte!=null){
-        jfc = new javax.swing.JFileChooser();
-        JFrame parentFrame = new JFrame();
-        int userSelection = jfc.showSaveDialog(parentFrame);                      
-        if(userSelection == JFileChooser.APPROVE_OPTION){
-                String extension = "";
-                String namaFile = "";
-                int a = namaFile.lastIndexOf('.');
-                int p = Math.max(namaFile.lastIndexOf('/'), namaFile.lastIndexOf('\\'));
-            if (a > p) {
-                extension =namaFile.substring(a+1);
-            } 
-            int lengtExtensionFile =extension.length();
-            String pathUser="";   
-            int lastSelected =jfc.getSelectedFile().getAbsolutePath().length()-lengtExtensionFile;
-            String selectExtension =jfc.getSelectedFile().getAbsolutePath().substring(lastSelected);
-            String ext ="";
-            if(!extension.equals(selectExtension)){
-                ext="."+".enk";
-            }
-            ext="."+"enk";
-            pathUser=jfc.getSelectedFile().getAbsolutePath()+ext;
-            try{
-                File fileSave = new File(pathUser);    
-                FileOutputStream outputStream = new FileOutputStream(fileSave);
-                outputStream.write(outputByte);
-                outputStream.close();
-                file =fileSave;
-                JOptionPane.showMessageDialog(null,"File Berhasil Di Enkripsi","Informasi",JOptionPane.INFORMATION_MESSAGE);       
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e.getMessage(),pathUser,JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
-        }else{
-        JOptionPane.showMessageDialog(null,enkripsi.getPesanKesalahan(),"Informasi",JOptionPane.INFORMATION_MESSAGE);
-        }
-       }
-    };treet.start();
+                        else {
+				//
+				long start = System.currentTimeMillis();
+				File file = new File(fileLabel.getText());
+				FileInputStream fis = new FileInputStream(file);
+				byte[] b = new byte[(int) file.length()];
+				fis.read(b);
+			        
+                                //byte[]passByte= STB2(password);
+				//Encryption rc4 = new Encryption(jTextField1.getText().getBytes());
+				
+                                byte[] en = rc6.encrypt(b, passwordField.getText().getBytes());
+				
+				String f = file.getName().substring(3, file.getName().length());
+				
+				File fout = new File("en_" + file.getName());
+				
+				long now = System.currentTimeMillis();
+				
+				JFileChooser fileChooser = null;
+				LookAndFeel previousLF = UIManager.getLookAndFeel();
+				
+				try{
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					fileChooser = new JFileChooser();
+					fileChooser.setSelectedFile(fout);
+					fileChooser.setDialogTitle("Save File Location");
+					UIManager.setLookAndFeel(previousLF);
+					
+					if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+			    		boolean doExport = true;
+			    		boolean overrideExistingFile = false;
+
+			    		String dir = fileChooser.getCurrentDirectory().toString();
+			    		File destinationFile = new File(fileChooser.getSelectedFile().getName());
+			    		DataOutputStream out = new DataOutputStream(new FileOutputStream(dir + "/" + destinationFile));
+			    
+			 			ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+						byteOut.write(en);
+						byteOut.writeTo(out);
+						out.close();
+			    
+
+					if (doExport) {
+			    	}
+				
+					JOptionPane.showMessageDialog(this, "File " + file.getName() + " Berhasil Di Enkrip\nWaktu Enkrip : " + (now-start)/1000.0 + " Detik");
+			            
+					fileLabel.setText("");
+					passwordField.setText("");
+				
+					}
+				
+				}
+				catch(IllegalAccessException | UnsupportedLookAndFeelException | InstantiationException | ClassNotFoundException e){}	 
+			}
+			fileLabel.setText("");
+			passwordField.setText("");
+				} 
+		catch(IOException ioe) {
+			JOptionPane.showMessageDialog(this,"File Yang Dipilih Bukan File Doc, Docx, Xls atau Xlsx");
+			fileLabel.setText("");
+                	passwordField.setText("");
+				
+                }
     }//GEN-LAST:event_enkripButtonActionPerformed
-
-
+        
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        if(file!=null){
+       if(file!=null){
         path=file.getAbsolutePath();
         }
         dispose();
@@ -306,21 +364,23 @@ private static File file;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(viewEnkripsiFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(enkripFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(viewEnkripsiFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(enkripFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(viewEnkripsiFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(enkripFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(viewEnkripsiFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(enkripFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                viewEnkripsiFile dialog = new viewEnkripsiFile(new javax.swing.JFrame(), true);
+                enkripFile dialog = new enkripFile(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

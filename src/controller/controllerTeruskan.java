@@ -6,7 +6,7 @@
 package controller;
 import javax.mail.Message;
 import javax.swing.JEditorPane;
-import view.viewBalasEmail;
+import view.balasEmail;
 
 /**
  *
@@ -14,7 +14,7 @@ import view.viewBalasEmail;
  */
 public class controllerTeruskan {
   
-viewBalasEmail viewbalasEmail;
+balasEmail viewbalasEmail;
 private final JEditorPane editorPane = new JEditorPane();
 
     public JEditorPane getEditorPane() {
@@ -52,7 +52,7 @@ return msg;
 
 public void balasEmail(String from){
 this.from =from; 
-viewbalasEmail = new viewBalasEmail(null,true);
+viewbalasEmail = new balasEmail(null,true);
 viewbalasEmail.setVisible(true);
 }
 }

@@ -1,6 +1,7 @@
 package algo;
 
-/*import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingException;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,18 +11,75 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.security.SecureRandom;
 import java.util.logging.Level;
-import java.util.logging.Logger;*/
+import java.util.logging.Logger;
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+
 
 public class RC6 {
-    private final int w=32, r=20;
-    private final int Pw=0xb7e15163, Qw=0x9e3779b9;
+    private int w=32, r=20;
+    private int Pw=0xb7e15163, Qw=0x9e3779b9;
     private int[] S;
+   
+/*public static void main(String[]args){
+     appRC6 x=new appRC6();
+     x.mulai();
+}
 
-	
-/*String BTS(byte[]result){
+void mulai(){
+    try {
+        String password="tonnyaray";
+       
+        String path=System.getProperty("user.dir")+"\\tesdoc\\";
+        System.out.println("path="+path);       
+        String pathFile=path+"listing_pc.docx";
+       
+        File fpathFile=new File(pathFile);
+        String nf=fpathFile.getName();//tesdoc.doc
+        String absnf=fpathFile.getParent();//nama folder
+      
+        appRC6 x=new appRC6();
+        byte[]doc2Byte=x.doc2Byte(pathFile);
+        byte[]passByte=x.STB2(password);
+       
+        String nfEn=absnf+"\\EN-"+nf;
+        byte[] encrypted = x.encrypt(doc2Byte,passByte);//x.encrypt(kalisidoc, password);    
+        x.saveByte(encrypted,nfEn);
+       
+        //+++++++++++++++++++++++++++++++++++++
+        //Baca FIle Dekrip
+        String passworddek="tonnyaray";
+       
+//        String pilihfile="";//D:\foldrer/a.doc
+//        String saveke="";//D:\skripsi\
+//        File ff=new File(pilihfile);
+//        String NFs=ff.getName();
+//        pathFileEn=saveke+"\\EN-"+NFs;
+       
+        String pathFileEn=nfEn;
+        File fpathFileDek=new File(pathFileEn);
+        String nfdec=fpathFileDek.getName();
+        String absnfdec=fpathFileDek.getParent();
+    
+        appRC6 xx=new appRC6();
+        byte[]doc2ByteDek=xx.doc2Byte2(pathFileEn);
+         byte[]passByteDek=x.STB2(passworddek);
+        
+        String nfDek=absnfdec+"\\DEK-"+nfdec;
+
+        byte[]doc2ByteXX=xx.decrypt(doc2ByteDek,passByteDek);
+        xx.saveByte(doc2ByteXX,nfDek); 
+       
+    } catch (Exception ex) {
+        Logger.getLogger(appRC6.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
+ 
+
+String BTS(byte[]result){
             String str = Base64.encode(result);//encodeBase64String
             return str;
         }
@@ -38,9 +96,9 @@ byte [] STB2(String s){
 byte[] STB3 (String s) throws Base64DecodingException{
             byte [] hs = Base64.decode(s);
             return hs;
-     }*/
+     }
  
-
+*/
 //    private String filename;
 //    private String directory;
 //    private String fileNameEncrypt;
@@ -214,10 +272,65 @@ byte[] STB3 (String s) throws Base64DecodingException{
     }
  
     //fungsi untuk melakukan enkripsi RC6
-    
+    public  byte[] encrypt(byte[] data, byte[] key) { 
+        byte[] bloc = new byte[16];
+        key = paddingKey(key);
+        S = generateSubkeys(key);
+
+        int lenght = 16 - data.length % 16;
+        byte[] padding = new byte[lenght];
+        padding[0] = (byte) 0x80;
+
+        for (int i = 1; i < lenght; i++)
+                padding[i] = 0;
+        int count = 0;
+        byte[] tmp = new byte[data.length+lenght];
+
+        int i;
+        for(i=0;i<data.length+lenght;i++) {
+            if(i>0 && i%16 == 0) {
+                bloc = encryptBloc(bloc);
+                System.arraycopy(bloc, 0, tmp, i-16, bloc.length);
+            }
+
+            if (i < data.length)
+                bloc[i % 16] = data[i];
+            else {             
+                bloc[i % 16] = padding[count];
+                count++;
+                if(count>lenght-1) count = 1;
+            }
+        }
+        bloc = encryptBloc(bloc);
+        System.arraycopy(bloc, 0, tmp, i - 16, bloc.length);
+        return tmp;              
+    }
 
     //fungsi untuk melakukan dekripsi RC6
-   
+    public  byte[] decrypt(byte[] data, byte[] key) {
+        byte[] tmp = new byte[data.length];
+        byte[] bloc = new byte[16];
+        key = paddingKey(key);
+        S = generateSubkeys(key);
+
+        int i;
+        for(i=0;i<data.length;i++) {
+            if(i>0 && i%16 == 0) {
+                bloc = decryptBloc(bloc);
+                System.arraycopy(bloc, 0, tmp, i-16, bloc.length);
+            }
+
+            if (i < data.length)
+                bloc[i % 16] = data[i];
+        }
+
+        bloc = decryptBloc(bloc);
+        System.arraycopy(bloc, 0, tmp, i - 16, bloc.length);
+
+        tmp = deletePadding(tmp);
+        return tmp;
+    }
+
     //proses penghilangan padding pada key
     private byte[] deletePadding(byte[] input) {
         int count = 0;
@@ -268,7 +381,7 @@ private String byteArrayToHexString(String b) {
         return sb.toString().toUpperCase();
     }
 
- /*  byte[] doc2Byte2(String NF){  
+/*   byte[] doc2Byte2(String NF){  
             File f = new File(NF);
             byte[] bit = new byte[(int)f.length()];
             try{
@@ -279,10 +392,10 @@ private String byteArrayToHexString(String b) {
            
             //hasil = DatatypeConverter.printBase64Binary(bit);
    return bit;        
-   }*/
+   }
            
    
-    /*byte[] doc2Byte(String NF){
+    byte[] doc2Byte(String NF){
         Path path = Paths.get(NF);
         byte[] data=null;
         try {
@@ -292,7 +405,7 @@ private String byteArrayToHexString(String b) {
         }
         return data;
     }
-   */
+   
    String byte2String(byte[]data){
       String gab="";
         for(int i=0; i < data.length; i++) {
@@ -304,7 +417,7 @@ private String byteArrayToHexString(String b) {
         return gab;
    }
    
-     /*private void saveString(String dataString,String NF) {
+     private void saveString(String dataString,String NF) {
           try {
            String content = dataString;
            File file = new File(NF);
@@ -321,8 +434,8 @@ private String byteArrayToHexString(String b) {
        } catch (IOException e) {
            e.printStackTrace();
        }
-   }*/
-     /*private void saveByte(byte[] databyte,String NF)  {
+   }
+     private void saveByte(byte[] databyte,String NF)  {
         try {
             Path path = Paths.get(NF);
             Files.write(path, databyte); //creates, overwrites
@@ -330,7 +443,7 @@ private String byteArrayToHexString(String b) {
         } catch (IOException ex) {
             Logger.getLogger(RC6.class.getName()).log(Level.SEVERE, null, ex);
         }
-     }*/  
+     }  
      String byte2String2(byte[]data){
     String gab="";
         for(int i=0; i < data.length; i++) {
@@ -348,68 +461,5 @@ byte[] string2Byte(String data){
               bit[i]=(byte)c;
          }
         return bit;
+}*/
 }
-
-    public byte[] encrypt(byte[] data, byte[] password) {
-        byte[] bloc = new byte[16];
-        password = paddingKey(password);
-        S = generateSubkeys(password);
-
-        int lenght = 16 - data.length % 16;
-        byte[] padding = new byte[lenght];
-        padding[0] = (byte) 0x80;
-
-        for (int i = 1; i < lenght; i++)
-                padding[i] = 0;
-        int count = 0;
-        byte[] tmp = new byte[data.length+lenght];
-
-        int i;
-        for(i=0;i<data.length+lenght;i++) {
-            if(i>0 && i%16 == 0) {
-                bloc = encryptBloc(bloc);
-                System.arraycopy(bloc, 0, tmp, i-16, bloc.length);
-            }
-
-            if (i < data.length)
-                bloc[i % 16] = data[i];
-            else {             
-                bloc[i % 16] = padding[count];
-                count++;
-                if(count>lenght-1) count = 1;
-            }
-        }
-        bloc = encryptBloc(bloc);
-        System.arraycopy(bloc, 0, tmp, i - 16, bloc.length);
-        return tmp;              
-    }
- //To change body of generated methods, choose Tools | Templates.
-
-    public byte[] decrypt(byte [] file, byte [] password ) {
-         byte[] tmp = new byte[file.length];
-        byte[] bloc = new byte[16];
-        password = paddingKey(password);
-        S = generateSubkeys(password);
-
-        int i;
-        for(i=0;i<file.length;i++) {
-            if(i>0 && i%16 == 0) {
-                bloc = decryptBloc(bloc);
-                System.arraycopy(bloc, 0, tmp, i-16, bloc.length);
-            }
-
-            if (i < file.length)
-                bloc[i % 16] = file[i];
-        }
-
-        bloc = decryptBloc(bloc);
-        System.arraycopy(bloc, 0, tmp, i - 16, bloc.length);
-
-        tmp = deletePadding(tmp);
-        return tmp;
-    }
-
-    }
-
- 
-    

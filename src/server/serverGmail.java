@@ -32,10 +32,10 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.Properties;
 import javax.mail.Session;
-import view.viewBacaEmail;
+import view.bacaEmal;
 import view.pesanDialog;
-import view.viewDeskripsiFile;
-import view.viewEmail;
+import view.dekripFile;
+import view.lihatEmail;
 import enkripsi.Enkrip;
 import java.net.URL;
 import java.net.URLConnection;
@@ -47,8 +47,8 @@ import java.net.URLConnection;
 public class serverGmail {  
 private final Enkrip enkrip = new Enkrip();    
 private String user,password;
-viewDeskripsiFile viewDeskrip;    
-viewBacaEmail viewbacaEmail;
+dekripFile viewDeskrip;    
+bacaEmal viewbacaEmail;
 private final pesanDialog pesandialog= new pesanDialog();  
 DefaultTableModel inboxTableModel,sentTableModel,draftTableModel;  
 private static FileInputStream inputStream;
@@ -730,7 +730,7 @@ String replacnbsp=hasilSplit.replaceAll("&nbsp;","");
  html+=replacnbsp.replaceAll("<style>([^<]*)</style>", "");
  System.out.println(html);
                Html=html;
-                   viewbacaEmail = new viewBacaEmail(null,true); 
+                   viewbacaEmail = new bacaEmal(null,true); 
                     viewbacaEmail.setVisible(true);
                         }catch(MessagingException | IOException e){
                             System.out.println(e.getMessage());
@@ -790,8 +790,8 @@ public boolean saveFile(final int select,final String file,final String folder) 
                                      final File fileToSave = jfc.getSelectedFile();
      
                                      System.out.println("Saving as file: " + fileToSave.getAbsolutePath());
-//                                     viewEmail.statusLabel.setText("Saving File");
-//                                     viewEmail.statusProgressBar.setStringPainted(true);
+//                                     lihatEmail.statusLabel.setText("Saving File");
+//                                     lihatEmail.statusProgressBar.setStringPainted(true);
                                      Thread treetSave = new Thread(){
                                          public void run(){
                                              for(;;){
@@ -799,7 +799,7 @@ public boolean saveFile(final int select,final String file,final String folder) 
                                                  for(int i=0;i<3;i++){
                                                      try{
                                                      Thread.sleep(100);
-//                                                      viewEmail.statusLabel.setText("Save File"+titik);
+//                                                      lihatEmail.statusLabel.setText("Save File"+titik);
                                                       titik+=titik;
                                                      }catch(Exception e){
                                                      }
@@ -807,14 +807,14 @@ public boolean saveFile(final int select,final String file,final String folder) 
                                                   DecimalFormat sdf = new DecimalFormat("#,###,###,###.##");
                                                   double curentSize =fileToSave.length()/1024.0;
                                                   double totalPersen=(curentSize/size)*100;
-//                                                  viewEmail.statusProgressBar.setString(sdf.format(curentSize)+"KB/"+sdf.format(size)+"KB "+Integer.toString((int)totalPersen)+"%");
-//                                                  viewEmail.statusProgressBar.setValue((int)totalPersen);
+//                                                  lihatEmail.statusProgressBar.setString(sdf.format(curentSize)+"KB/"+sdf.format(size)+"KB "+Integer.toString((int)totalPersen)+"%");
+//                                                  lihatEmail.statusProgressBar.setValue((int)totalPersen);
                                              }
                                          }
                                      };treetSave.start();
                                      PArt[partCount].saveFile( fileToSave.getAbsolutePath());
                                      treetSave.stop();
-//                                      viewEmail.statusLabel.setText("");
+//                                      lihatEmail.statusLabel.setText("");
             File file1= jfc.getSelectedFile();
                                      byte[] byteFile = new byte[(int)file1.length()];
                                        try{
@@ -831,7 +831,7 @@ public boolean saveFile(final int select,final String file,final String folder) 
          try{
          if(pesandialog.pesanYesOrNo()==JOptionPane.YES_OPTION){
          files=fileToSave.getAbsolutePath();
-             viewDeskrip = new viewDeskripsiFile(null,true);
+             viewDeskrip = new dekripFile(null,true);
              viewDeskrip.setVisible(true);
              files="";
          }}catch(Exception e){}
@@ -857,9 +857,9 @@ public boolean saveFile(final int select,final String file,final String folder) 
              }catch(Exception e){
              }
 //viewEmail.statusLabel.setText("");
-// viewEmail.statusProgressBar.setValue(0);
-//        viewEmail.statusProgressBar.setStringPainted(false);             
-}};treet.start();
+// lihatEmail.statusProgressBar.setValue(0);
+//        lihatEmail.statusProgressBar.setStringPainted(false);             
+}       };treet.start();
 boolean valid = true;
 
 return valid;
@@ -1004,7 +1004,7 @@ public void tampilkanDataTable(javax.swing.JTable table, DefaultTableModel table
 }  
 
 public boolean readEmailOffline(int row, String folder, javax.swing.JTable table ){    
-    viewbacaEmail = new viewBacaEmail(null,true);
+    viewbacaEmail = new bacaEmal(null,true);
     String subject="",content="";
     if(table.getValueAt(row, 3).toString()!= null){
         subject = table.getValueAt(row, 3).toString();

@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cintya;
+package Main;
 
 import java.io.File;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import view.akun;
-import view.viewEmail;
+import view.lihatEmail;
 
 /**
  *
  * @author JTEK
  */
-public class Cintya {
+public class Main {
 
     /**
      * @param args the command line arguments
@@ -35,7 +35,7 @@ public class Cintya {
         String direktori=System.getProperty("user.dir");
         File file = new File(direktori+"/src/seting/imapProperties.properties");
         if(file.exists()){
-        new viewEmail().setVisible(true);
+        new lihatEmail().setVisible(true);
         }else{
         new akun().setVisible(true);
         JOptionPane.showMessageDialog(null, "Alamat Email dan Password Harus Di Isi", "Informasi",JOptionPane.INFORMATION_MESSAGE);
