@@ -128,7 +128,6 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="contentType" type="java.lang.String" value="text/html" noResource="true"/>
-                <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xd;   &lt;head&gt;&#xd; &#xd;   &lt;/head&gt;&#xd;   &lt;body&gt;&#xd;     &lt;p style=&quot;margin-top: 0&quot;&gt;&#xd;       &#xd;     &lt;/p&gt;&#xd;   &lt;/body&gt;&#xd; &lt;/html&gt;&#xd; "/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

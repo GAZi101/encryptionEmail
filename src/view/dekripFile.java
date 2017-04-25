@@ -67,20 +67,32 @@ private final serverGmail server = new serverGmail();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel1 = new editSwing.Panel();
+        jPanel1 = new javax.swing.JPanel();
+        passwordField = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        fileLabel = new javax.swing.JLabel();
         deskripButton = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
-        fileLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        passwordField = new javax.swing.JPasswordField();
-        jButton4 = new javax.swing.JButton();
-        persenProgessbar = new javax.swing.JProgressBar();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Deskripsi");
         setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setText("Password :");
+
+        jButton4.setText("Choose File");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        fileLabel.setBackground(new java.awt.Color(204, 204, 204));
+        fileLabel.setText("No File");
+        fileLabel.setOpaque(true);
 
         deskripButton.setText("Deskripsi");
         deskripButton.addActionListener(new java.awt.event.ActionListener() {
@@ -96,86 +108,58 @@ private final serverGmail server = new serverGmail();
             }
         });
 
-        fileLabel.setBackground(new java.awt.Color(204, 204, 204));
-        fileLabel.setText("No File");
-        fileLabel.setOpaque(true);
-
-        jLabel2.setText("Password :");
-
-        jButton4.setText("Choose File");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        persenProgessbar.setStringPainted(true);
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Dekripsi File");
-
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addGroup(panel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(persenProgessbar, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
-                            .addGroup(panel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(deskripButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(okButton))
-                            .addComponent(fileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(okButton))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3))
-                .addContainerGap(45, Short.MAX_VALUE))
+                        .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel3)
-                .addGap(11, 11, 11)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fileLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(persenProgessbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(okButton)
-                    .addComponent(deskripButton))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deskripButton)
+                    .addComponent(okButton))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -192,7 +176,7 @@ private final serverGmail server = new serverGmail();
 			jfc.setDialogTitle("Pilih File");
 			UIManager.setLookAndFeel(previousLF);
 		}catch (IllegalAccessException | UnsupportedLookAndFeelException | InstantiationException | ClassNotFoundException e) {}
-		FileFilter docFilter, docxFilter, xlsFilter, xlsxFilter, txtFilter,pdfFilter, allFilter;
+		FileFilter docxFilter, docFilter, xlsFilter, xlsxFilter, txtFilter,pdfFilter, allFilter;
 		docFilter = new FileNameExtensionFilter("Word 2007/2010", "docx");
 		docxFilter = new FileNameExtensionFilter("Word 2003", "doc");
 		xlsFilter = new FileNameExtensionFilter("Excel 2003", "xls");
@@ -369,11 +353,8 @@ dispose();
     private javax.swing.JLabel fileLabel;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton okButton;
-    private editSwing.Panel panel1;
     private javax.swing.JPasswordField passwordField;
-    private javax.swing.JProgressBar persenProgessbar;
     // End of variables declaration//GEN-END:variables
 }

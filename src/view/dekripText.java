@@ -162,7 +162,7 @@ private final Enkrip enkrip = new Enkrip();
         // TODO add your handling code here:
         if(!passwordField.getText().equals("")){
        if(passwordField.getText().length()>=1){   
-         String text = enkrip.enkripText(chiperTextArea.getText(), passwordField.getText());
+         String text = enkrip.deskripText2(chiperTextArea.getText(), passwordField.getText());
 //String f = text.get().substring(3, text.getName().length());
          if(!text.equals("")){
          plaintextTextArea.setText(text);

@@ -49,7 +49,7 @@ int[] a = {1,4,6};
  
    if (row % 2 == 1) {
             // ganjil
-            component.setBackground(new Color(153,153,153));
+            component.setBackground(new Color(204,255,204));
         } else {
             // genap
             component.setBackground(Color.white);

@@ -139,7 +139,6 @@ public String folder;
 
         emailEditorPane.setEditable(false);
         emailEditorPane.setContentType("text/html"); // NOI18N
-        emailEditorPane.setText("<html>\r   <head>\r \r   </head>\r   <body>\r     <p style=\"margin-top: 0\">\r       \r     </p>\r   </body>\r </html>\r ");
         jScrollPane1.setViewportView(emailEditorPane);
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
@@ -223,10 +222,10 @@ private static String tampungContent,tampungHtml;
                         }
                         String Text =content.replaceAll("\\<[^>]*>","");
                         String conten=Text.replace(" ","");
-                        String tex =conten.replace("\n", "").replace("\r", "");
-                        System.out.println(tex);
+                        //String tex =conten.replace("\n", "").replace("\r", "");
+                        System.out.println("pesan "+conten);
                         String password=passwordField.getText();
-                        String cont=enkripsi.deskripText(tex, password);
+                        String cont=enkripsi.deskripText2(conten, password);
 
                         if(!cont.equals("")){
                             jButton5.setText("Kembali");

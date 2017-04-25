@@ -94,8 +94,8 @@ File configFile = new File(direktori+"/src/seting/akunProperties.properties");
 			inputStream.close();
                         
 		}
-		user=enkrip.deskripText(props.getProperty("mail.user"), "budiluhur");//props.getProperty("mail.user");//enkrip.deskripText(props.getProperty("mail.user"), "budiluhur");
-                password=enkrip.deskripText(props.getProperty("mail.password"), "budiluhur");//props.getProperty("mail.password");//enkrip.deskripText(props.getProperty("mail.password"), "budiluhur");
+		user=enkrip.deskripText2(props.getProperty("mail.user"), "budiluhur");//props.getProperty("mail.user");//enkrip.deskripText(props.getProperty("mail.user"), "budiluhur");
+                password=enkrip.deskripText2(props.getProperty("mail.password"), "budiluhur");//props.getProperty("mail.password");//enkrip.deskripText(props.getProperty("mail.password"), "budiluhur");
                 //System.out.println(password);
 }
 public void closed(){    

@@ -154,7 +154,7 @@ public class SaveOfflineController {
                     simpan = true;
                     System.out.println("userid="+userID);
                     System.out.println("Password="+password);
-                    SQLStatement = "INSERT into user(userid, password) values ('" + userID + "','" + enkrip.enkripText(password, "budiluhur") + "')"; 
+                    SQLStatement = "INSERT into user(userid, password) values ('" + userID + "','" + enkrip.enkripText2(password, "budiluhur") + "')"; 
                     sta = koneksi.createStatement();
                     jumlahSimpan += sta.executeUpdate(SQLStatement);    
                     
@@ -197,12 +197,12 @@ public class SaveOfflineController {
                 rset.next();
                 if (rset.getRow()>0){
                     this.userID = rset.getString("userid"); 
-                    this.password = enkrip.deskripText(rset.getString("password"), "budiluhur"); 
+//                    this.password = enkrip.deskripText(rset.getString("password"), "budiluhur"); 
                     System.out.println("bacauser="+password);
                     
                 } else {
                     adaKesalahan = true;
-                    pesan = "user \""+userid+"\" tidak ditemukan\n"+enkrip.enkripText(userid, "budiluhur");
+                    pesan = "user \""+userid+"\" tidak ditemukan\n"+enkrip.enkripText2(userid, "budiluhur");
                 }
                 
                 sta.close();

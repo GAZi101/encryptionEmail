@@ -30,8 +30,8 @@ public class Panel extends JPanel {
 
     private static final long serialVersionUID = -1;
     private BufferedImage gradientImage;
-    private Color black = new java.awt.Color(153,153,153);
-    private Color warna = new java.awt.Color(204,204,204);
+    private Color black = new java.awt.Color(204,255,255);
+    private Color warna = new java.awt.Color(204,255,204);
 
     /**
      * membuat panel black green baru
@@ -53,7 +53,7 @@ public class Panel extends JPanel {
             int width = getWidth();
             int height = getHeight() * 5 / 100;
 
-            Color light = new Color(1F, 1F, 1F, 0.1F);
+            Color light = new Color( 0.1f, 0.1f, 0.1f, 1);
             Color dark = new Color(1F, 1F, 1F, 0.0F);
 
             GradientPaint paint = new GradientPaint(0, 0, light, 0, height, dark);

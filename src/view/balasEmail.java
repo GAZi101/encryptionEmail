@@ -248,7 +248,7 @@ private final Enkrip enkrip =new Enkrip();
         // TODO add your handling code here:
          if(miripLabel.getText().equals("Valid")){
             if(passwordField.getText().length()>=8){
-             String text=enkrip.enkripText(contentTextArea.getText(),passwordField.getText());
+             String text=enkrip.enkripText2(contentTextArea.getText(),passwordField.getText());
              contentTextArea.setText(text);
             }else{
                 JOptionPane.showMessageDialog(null,"Password Harus 8 Karakter Atau Lebih","Informasi",JOptionPane.INFORMATION_MESSAGE);

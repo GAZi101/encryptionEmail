@@ -169,7 +169,7 @@ String byte2String2(byte[]data){
         // TODO add your handling code here:
       if(!passwordField.getText().equals("")){
        if(passwordField.getText().length()>= 1){
-         String text = enkrip.enkripText(plaintextTextArea.getText(), passwordField.getText());
+         String text = enkrip.enkripText2(plaintextTextArea.getText(), passwordField.getText());
 //String f = text.get().substring(3, text.getName().length());
          if(!text.equals("")){
          chiperTextArea.setText(text);

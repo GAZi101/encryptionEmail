@@ -64,23 +64,45 @@ private static File file;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel1 = new editSwing.Panel();
-        enkripButton = new javax.swing.JButton();
-        okButton = new javax.swing.JButton();
-        fileLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
-        jButton4 = new javax.swing.JButton();
-        confirmPasswordField = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
+        confirmPasswordField = new javax.swing.JPasswordField();
         miripLabel = new javax.swing.JLabel();
-        persenProgessbar = new javax.swing.JProgressBar();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
+        fileLabel = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        enkripButton = new javax.swing.JButton();
+        okButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Enkripsi");
         setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setText("Password :");
+
+        jLabel3.setText("Confrim Password :");
+
+        confirmPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                confirmPasswordFieldKeyReleased(evt);
+            }
+        });
+
+        miripLabel.setText("Validasi");
+
+        fileLabel.setBackground(new java.awt.Color(204, 204, 204));
+        fileLabel.setText("No File");
+        fileLabel.setOpaque(true);
+
+        jButton4.setText("Choose File");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         enkripButton.setText("Enkripsi");
         enkripButton.addActionListener(new java.awt.event.ActionListener() {
@@ -96,106 +118,66 @@ private static File file;
             }
         });
 
-        fileLabel.setBackground(new java.awt.Color(204, 204, 204));
-        fileLabel.setText("No File");
-        fileLabel.setOpaque(true);
-
-        jLabel2.setText("Password :");
-
-        jButton4.setText("Choose File");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        confirmPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                confirmPasswordFieldKeyReleased(evt);
-            }
-        });
-
-        jLabel3.setText("Confrim Password :");
-
-        miripLabel.setText("Validasi");
-
-        persenProgessbar.setStringPainted(true);
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Enkripsi File");
-
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addGroup(panel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addGroup(panel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(persenProgessbar, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
-                            .addGroup(panel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(enkripButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(okButton))
-                            .addComponent(fileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(okButton))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(miripLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(miripLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(confirmPasswordField)
-                            .addComponent(passwordField))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel4)
-                .addGap(17, 17, 17)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(miripLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fileLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(fileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(persenProgessbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(okButton)
-                    .addComponent(enkripButton))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enkripButton)
+                    .addComponent(okButton))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -203,142 +185,143 @@ private static File file;
 
     private void confirmPasswordFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmPasswordFieldKeyReleased
         // TODO add your handling code here:
-        
+
         if(!passwordField.getText().equals(confirmPasswordField.getText())){
-        miripLabel.setText("Tidak Valid");
-        miripLabel.setForeground(Color.red);
+            miripLabel.setText("Tidak Valid");
+            miripLabel.setForeground(Color.red);
         }else{
-         miripLabel.setForeground(Color.black);
-         miripLabel.setText("Valid");
+            miripLabel.setForeground(Color.black);
+            miripLabel.setText("Valid");
         }
     }//GEN-LAST:event_confirmPasswordFieldKeyReleased
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-         String current = "";
-		JFileChooser jfc = null; 
-		LookAndFeel previousLF = UIManager.getLookAndFeel();
-		try{
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			jfc = new JFileChooser(current);
-			jfc.setDialogTitle("Pilih File");
-			UIManager.setLookAndFeel(previousLF);
-		}catch (IllegalAccessException | UnsupportedLookAndFeelException | InstantiationException | ClassNotFoundException e) {}
-		FileFilter docFilter, docxFilter, xlsFilter, xlsxFilter, txtFilter,pdfFilter, allFilter;
-		docFilter = new FileNameExtensionFilter("Word 2007/2010", "docx");
-		docxFilter = new FileNameExtensionFilter("Word 2003", "doc");
-		xlsFilter = new FileNameExtensionFilter("Excel 2003", "xls");
-		xlsxFilter = new FileNameExtensionFilter("Excel 2007/2010", "xlsx");
-		txtFilter = new FileNameExtensionFilter("Text Document File","txt");
-		pdfFilter = new FileNameExtensionFilter("PDF Document File", "pdf");
-		allFilter = new FileNameExtensionFilter("All File", "doc", "docx", "xls", "xlsx", "txt");
-		jfc.setAcceptAllFileFilterUsed(false);
-		jfc.addChoosableFileFilter(docxFilter);
-                jfc.addChoosableFileFilter(docFilter);
-		jfc.addChoosableFileFilter(xlsFilter);
-		jfc.addChoosableFileFilter(xlsxFilter);
-		jfc.addChoosableFileFilter(txtFilter);
-		jfc.addChoosableFileFilter(pdfFilter);
-		jfc.addChoosableFileFilter(allFilter);
-		if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-			String f = jfc.getSelectedFile().toString();
-			fileLabel.setText(f);
-		}
-		else {
-			jfc.hide();
-		}
+        String current = "";
+        JFileChooser jfc = null;
+        LookAndFeel previousLF = UIManager.getLookAndFeel();
+        try{
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            jfc = new JFileChooser(current);
+            jfc.setDialogTitle("Pilih File");
+            UIManager.setLookAndFeel(previousLF);
+        }catch (IllegalAccessException | UnsupportedLookAndFeelException | InstantiationException | ClassNotFoundException e) {}
+        FileFilter docFilter, docxFilter, xlsFilter, xlsxFilter, txtFilter,pdfFilter, allFilter;
+        docFilter = new FileNameExtensionFilter("Word 2007/2010", "docx");
+        docxFilter = new FileNameExtensionFilter("Word 2003", "doc");
+        xlsFilter = new FileNameExtensionFilter("Excel 2003", "xls");
+        xlsxFilter = new FileNameExtensionFilter("Excel 2007/2010", "xlsx");
+        txtFilter = new FileNameExtensionFilter("Text Document File","txt");
+        pdfFilter = new FileNameExtensionFilter("PDF Document File", "pdf");
+        allFilter = new FileNameExtensionFilter("All File", "doc", "docx", "xls", "xlsx", "txt");
+        jfc.setAcceptAllFileFilterUsed(false);
+        jfc.addChoosableFileFilter(docxFilter);
+        jfc.addChoosableFileFilter(docFilter);
+        jfc.addChoosableFileFilter(xlsFilter);
+        jfc.addChoosableFileFilter(xlsxFilter);
+        jfc.addChoosableFileFilter(txtFilter);
+        jfc.addChoosableFileFilter(pdfFilter);
+        jfc.addChoosableFileFilter(allFilter);
+        if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            String f = jfc.getSelectedFile().toString();
+            fileLabel.setText(jfc.getSelectedFile().getPath());
+            file=new File(jfc.getSelectedFile().getPath());
+            fileLabel.setText(f);
+        }
+        else {
+            jfc.hide();
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void enkripButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enkripButtonActionPerformed
-        // TODO add your handling code here:
-        try {
-            
-			if (fileLabel.getText().equals("")){
-				JOptionPane.showMessageDialog(this,"File Belum Di Pilih");
-				fileLabel.requestFocus();
-			}
-			else if (passwordField.getText().equals("")){
-				JOptionPane.showMessageDialog(this,"Password Belum Di Masukan");
-				passwordField.requestFocus();
-			}
-                        else if(!miripLabel.getText().equals("Valid")){
-                        JOptionPane.showMessageDialog(null,"Pasword Tidak Valid","Informasi",JOptionPane.INFORMATION_MESSAGE);
-                        
-        }
-                        else {
-				//
-				long start = System.currentTimeMillis();
-				File file = new File(fileLabel.getText());
-				FileInputStream fis = new FileInputStream(file);
-				byte[] b = new byte[(int) file.length()];
-				fis.read(b);
-			        
-                                //byte[]passByte= STB2(password);
-				//Encryption rc4 = new Encryption(jTextField1.getText().getBytes());
-				
-                                byte[] en = rc6.encrypt(b, passwordField.getText().getBytes());
-				
-				String f = file.getName().substring(3, file.getName().length());
-				
-				File fout = new File("en_" + file.getName());
-				
-				long now = System.currentTimeMillis();
-				
-				JFileChooser fileChooser = null;
-				LookAndFeel previousLF = UIManager.getLookAndFeel();
-				
-				try{
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-					fileChooser = new JFileChooser();
-					fileChooser.setSelectedFile(fout);
-					fileChooser.setDialogTitle("Save File Location");
-					UIManager.setLookAndFeel(previousLF);
-					
-					if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-			    		boolean doExport = true;
-			    		boolean overrideExistingFile = false;
-
-			    		String dir = fileChooser.getCurrentDirectory().toString();
-			    		File destinationFile = new File(fileChooser.getSelectedFile().getName());
-			    		DataOutputStream out = new DataOutputStream(new FileOutputStream(dir + "/" + destinationFile));
-			    
-			 			ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
-						byteOut.write(en);
-						byteOut.writeTo(out);
-						out.close();
-			    
-
-					if (doExport) {
-			    	}
-				
-					JOptionPane.showMessageDialog(this, "File " + file.getName() + " Berhasil Di Enkrip\nWaktu Enkrip : " + (now-start)/1000.0 + " Detik");
-			            
-					fileLabel.setText("");
-					passwordField.setText("");
-				
-					}
-				
-				}
-				catch(IllegalAccessException | UnsupportedLookAndFeelException | InstantiationException | ClassNotFoundException e){}	 
-			}
-			fileLabel.setText("");
-			passwordField.setText("");
-				} 
-		catch(IOException ioe) {
-			JOptionPane.showMessageDialog(this,"File Yang Dipilih Bukan File Doc, Docx, Xls atau Xlsx");
-			fileLabel.setText("");
-                	passwordField.setText("");
-				
-                }
-    }//GEN-LAST:event_enkripButtonActionPerformed
-        
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-       if(file!=null){
-        path=file.getAbsolutePath();
+        if(file!=null){
+            path=file.getAbsolutePath();
         }
         dispose();
     }//GEN-LAST:event_okButtonActionPerformed
 
+    private void enkripButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enkripButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+
+            if (fileLabel.getText().equals("")){
+                JOptionPane.showMessageDialog(this,"File Belum Di Pilih");
+                fileLabel.requestFocus();
+            }
+            else if (passwordField.getText().equals("")){
+                JOptionPane.showMessageDialog(this,"Password Belum Di Masukan");
+                passwordField.requestFocus();
+            }
+            else if(!miripLabel.getText().equals("Valid")){
+                JOptionPane.showMessageDialog(null,"Pasword Tidak Valid","Informasi",JOptionPane.INFORMATION_MESSAGE);
+
+            }
+            else {
+                //
+                long start = System.currentTimeMillis();
+                File file = new File(fileLabel.getText());
+                FileInputStream fis = new FileInputStream(file);
+                byte[] b = new byte[(int) file.length()];
+                fis.read(b);
+
+                //byte[]passByte= STB2(password);
+                //Encryption rc4 = new Encryption(jTextField1.getText().getBytes());
+
+                byte[] en = rc6.encrypt(b, passwordField.getText().getBytes());
+
+                String f = file.getName().substring(3, file.getName().length());
+
+                File fout = new File("en_" + file.getName());
+
+                long now = System.currentTimeMillis();
+
+                JFileChooser fileChooser = null;
+                LookAndFeel previousLF = UIManager.getLookAndFeel();
+
+                try{
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    fileChooser = new JFileChooser();
+                    fileChooser.setSelectedFile(fout);
+                    fileChooser.setDialogTitle("Save File Location");
+                    UIManager.setLookAndFeel(previousLF);
+
+                    if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+                        boolean doExport = true;
+                        boolean overrideExistingFile = false;
+
+                        String dir = fileChooser.getCurrentDirectory().toString();
+                        File destinationFile = new File(fileChooser.getSelectedFile().getName());
+                        DataOutputStream out = new DataOutputStream(new FileOutputStream(dir + "/" + destinationFile));
+
+                        ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+                        byteOut.write(en);
+                        byteOut.writeTo(out);
+                        out.close();
+
+                        if (doExport) {
+                        }
+
+                        JOptionPane.showMessageDialog(this, "File " + file.getName() + " Berhasil Di Enkrip\nWaktu Enkrip : " + (now-start)/1000.0 + " Detik");
+
+                        fileLabel.setText("");
+                        passwordField.setText("");
+
+                    }
+
+                }
+                catch(IllegalAccessException | UnsupportedLookAndFeelException | InstantiationException | ClassNotFoundException e){}
+            }
+            fileLabel.setText("");
+            passwordField.setText("");
+        }
+        catch(IOException ioe) {
+            JOptionPane.showMessageDialog(this,"File Yang Dipilih Bukan File Doc, Docx, Xls atau Xlsx");
+            fileLabel.setText("");
+            passwordField.setText("");
+
+        }
+    }//GEN-LAST:event_enkripButtonActionPerformed
+        
     private String path="";
 
     public String getPath() {
@@ -399,13 +382,10 @@ private static File file;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel miripLabel;
     private javax.swing.JButton okButton;
-    private editSwing.Panel panel1;
     private javax.swing.JPasswordField passwordField;
-    private javax.swing.JProgressBar persenProgessbar;
     // End of variables declaration//GEN-END:variables
 }
 class ExtensionFileFilter extends FileFilter {

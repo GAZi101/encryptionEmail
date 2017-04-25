@@ -101,8 +101,8 @@ if(!servergmail.cekKoneksi()){
                 propsSMTP.setProperty("mail.smtp.starttls.enable", "true");
                 propsSMTP.setProperty("mail.smtp.auth", "true");
             }
-                propsAkun.setProperty("mail.user",alamatEmailTextField.getText());
-                propsAkun.setProperty("mail.password",passwordField.getText());
+                propsAkun.setProperty("mail.user",enkrip.enkripText2(alamatEmailTextField.getText(),"budiluhur"));
+                propsAkun.setProperty("mail.password",enkrip.enkripText2(passwordField.getText(),"budiluhur"));
                 loadingAnimasi=false;
                 String direktori= System.getProperty("user.dir");
                 File setingImap = new File(direktori+"/src/seting/imapProperties.properties");
@@ -199,8 +199,8 @@ String host=alamatEmailTextField.getText().toLowerCase();
             propsSMTP.setProperty("mail.smtp.auth", "true");
         }
 
-        propsAkun.setProperty("mail.user",alamatEmailTextField.getText());//enkrip.enkripText(alamatEmailTextField.getText(),"budiluhur"));
-        propsAkun.setProperty("mail.password",passwordField.getText());//enkrip.enkripText(passwordField.getText(),"budiluhur"));
+        propsAkun.setProperty("mail.user",enkrip.enkripText2(alamatEmailTextField.getText(),"budiluhur"));//enkrip.enkripText(alamatEmailTextField.getText(),"budiluhur"));
+        propsAkun.setProperty("mail.password",enkrip.enkripText2(passwordField.getText(),"budiluhur"));//enkrip.enkripText(passwordField.getText(),"budiluhur"));
         Session session = Session.getDefaultInstance(propsImap);  
         Store store = session.getStore("imap");
         store.connect(alamatEmailTextField.getText().toLowerCase(), passwordField.getText());
